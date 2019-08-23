@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <title>Palindrome Number</title>
+  </head>
+  <body class="text-center bg-dark">
+    <div
+      class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column text-light"
+    >
+      <main role="main" class="inner cover">
+        <h1 class="cover-heading">
+                Palindrome Number
+        </h1>
+        <div class="row justify-content-center">
+          <p class="lead col-lg-6">
+                Determine whether an integer is a palindrome. An integer is a palindrome when it reads the same backward as forward.
+          </p>
+        </div>
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="input-group mb-3 col-lg-6">
+              <input
+                type="text"
+                id="1"
+                class="form-control"
+                placeholder="Numero"
+                onkeypress="return soloLetras(event)"
+              />
+            </div>
+          </div>
+        </div>
+        <button id="3" class="btn btn-lg btn-secondary">Ok</button>
+      </main>
+    </div>
+    <div></div>
+
+    <script>
+      function soloLetras(e) {
+        key = e.keyCode || e.which;
+        tecla = String.fromCharCode(key).toLowerCase();
+        letras = " +-123456789";
+        especiales = "8-37-39-46";
+
+        tecla_especial = false;
+        for (var i in especiales) {
+          if (key == especiales[i]) {
+            tecla_especial = true;
+            break;
+          }
+        }
+
+        if (letras.indexOf(tecla) == -1 && !tecla_especial) {
+          return false;
+        }
+      }
+
+      const toArr = num => {
+        return num
+          .toString(10)
+          .split("")
+          .map(function(t) {
+            return parseInt(t);
+          });
+      };
+
+      const isPalindrome = num => {
+        let arr = toArr(num);
+        let arr2 = [],
+          max = 0,
+          num1 = 0,
+          num2 = 0;
+
+        for (let i = arr.length - 1; i >= 0; i--) {
+          arr2.push(arr[i]);
+        }
+        for (const val of arr2) {
+          num2 += `${val}`;
+          num1 += `${arr[max]}`;
+          max++;
+        }
+        num2 = parseInt(num2, 10);
+        num1 = parseInt(num1, 10);
+        if (num1 === num2) {
+          alert("Los numeros son palindromos");
+        } else {
+          alert("No es palindromo");
+        }
+      };
+
+      const Comenzar = () => {
+        let a = document.getElementById("1").value;
+        a = parseInt(a, 10) 
+        isPalindrome(a);
+    };
+
+    document.getElementById('3').addEventListener('click', Comenzar);
+
+    </script>
+  </body>
+</html>

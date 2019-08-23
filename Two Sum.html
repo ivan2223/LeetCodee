@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <title>Two Sum</title>
+  </head>
+  <body class="text-center bg-dark">
+    <div
+      class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column text-light"
+    >
+      <main role="main" class="inner cover">
+        <h1 class="cover-heading">Two Sum</h1>
+        <div class="row justify-content-center">
+          <p class="lead col-lg-6">
+            Given an array of integers, return indices of the two numbers such
+            that they add up to a specific target. You may assume that each
+            input would have exactly one solution, and you may not use the same
+            element twice.
+          </p>
+        </div>
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="input-group mb-3 col-lg-6">
+              <input
+                type="text"
+                id="1"
+                class="form-control"
+                placeholder="Numeros separados por espacio"
+                onKeypress="if (event.keyCode < 32 || event.keyCode > 57) event.returnValue = false;"
+              />
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <div class="input-group mb-3 col-lg-6">
+              <input
+                type="text"
+                id="2"
+                class="form-control"
+                placeholder="Resultado esperado"
+                onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;"
+              />
+            </div>
+          </div>
+        </div>
+        <button id="3" class="btn btn-lg btn-secondary">Ok</button>
+      </main>
+    </div>
+    <div></div>
+
+    <script>
+      const twoSum = (nums, target) => {
+        let one = 0,
+          two;
+        for (let i = 0; i < nums.length; i++) {
+          for (let i2 = i + 1; i2 < nums.length; i2++) {
+            one = nums[i] + nums[i2];
+            if (one === target) {
+              return `La solucion es: ${[nums[i], nums[i2]]}`;
+            }
+          }
+        }
+        return "No hay solucion";
+      };
+      //Lo mismo de la funcion twoSum pero con forEach
+      /* const twoSum2 = (nums, target, one = 0) => {
+        let two;
+        let nambs = nums.forEach((element, index, array) => {
+          two = element + array[one];
+          if (two === target && index !== one) {
+            dameValor(element, array[one]);
+          }
+        });
+        one++;
+        if (one < nums.length) twoSum2(nums, target, one);
+      };
+
+      dameValor = (a, b) => {
+        aca = [a, b];
+      }; */
+
+      const aEntero = el => el = parseInt(el, 10);
+      
+
+      const Comenzar = () => {
+        let numbers = document.getElementById('1').value;
+        let target = document.getElementById('2').value;
+        numbers = numbers.split(' ');
+        numbers = numbers.map(el => aEntero(el));
+        target = aEntero(target);
+        const regreso = twoSum(numbers, target);
+        /* twoSum2(numbers, target); */
+        alert(regreso);
+      };
+      document.getElementById("3").addEventListener("click", Comenzar);
+    </script>
+  </body>
+</html>
